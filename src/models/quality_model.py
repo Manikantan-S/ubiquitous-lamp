@@ -113,8 +113,16 @@ def evaluate(model: nn.Module, dataloader: DataLoader, criterion, device: torch.
     return running_loss / total, correct / total
 
 
+def select_device() -> torch.device:
+    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        return torch.device("mps")
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    return torch.device("cpu")
+
+
 def train_model(config: DictConfig, data_root: Path, output_dir: Path) -> TrainingArtifacts:
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = select_device()
     train_loader, val_loader, test_loader, class_to_idx = create_dataloaders(data_root, config)
     model = QualityModel(num_classes=len(class_to_idx), pretrained=config.model.pretrained)
     model.to(device)

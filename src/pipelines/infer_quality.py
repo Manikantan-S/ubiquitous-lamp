@@ -13,7 +13,7 @@ from torchvision import transforms
 from PIL import Image
 import time
 
-from src.models.quality_model import QualityModel
+from src.models.quality_model import QualityModel, select_device
 
 
 class ManifestDataset(Dataset):
@@ -110,7 +110,7 @@ def main() -> None:
     dataset = ManifestDataset(args.manifest, args.images_root, split="test")
     dataloader = DataLoader(dataset, batch_size=args.batch_size, shuffle=False, num_workers=2)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = select_device()
     model = load_model(args.checkpoint, num_classes=len(dataset.class_names), device=device)
 
     start_time = time.time()

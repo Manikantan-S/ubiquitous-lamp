@@ -52,6 +52,8 @@ data/
 
 ## Getting started
 
+> **Apple Silicon note:** MPS acceleration on Macs with M-series chips is supported out of the box. The training and inference pipelines now auto-detect `mps`, `cuda`, or CPU devices, and a dedicated walkthrough for macOS M4 systems lives in [`docs/mac_m4_setup.md`](docs/mac_m4_setup.md).
+
 1. **Install dependencies**
 
    ```bash
@@ -73,6 +75,7 @@ data/
 3. **Train the lightweight quality model**
 
    ```bash
+   export PYTORCH_ENABLE_MPS_FALLBACK=1  # safe on macOS; no-op elsewhere
    python -m src.pipelines.train_quality \
        --config configs/experiment.yaml \
        --data-root data/processed/spoilage_quality \
