@@ -1,0 +1,11 @@
+model:
+  pretrained: true
+training:
+  epochs: 15
+  batch_size: 64
+  lr: 0.0005
+  weight_decay: 0.01
+  image_size: 224
+  num_workers: 4
+logging:
+  log_interval: 50

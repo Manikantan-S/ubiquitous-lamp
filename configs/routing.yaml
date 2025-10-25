@@ -1,0 +1,9 @@
+routing:
+  average_speed_kmph: 40
+  horizon_minutes: 480
+  max_distance_km: 300
+  vehicle_capacities: [800, 800, 800]
+  time_buffer_minutes: 15
+  solver_time_limit_s: 30
+  waste_factor: 0.3
+  baseline_waste_factor: 0.5

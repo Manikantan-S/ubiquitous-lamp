@@ -1,0 +1,4 @@
+image_id,location_id,latitude,longitude,demand_kg,service_minutes
+img_001,DC_01,1.29,103.85,120,12
+img_002,DC_02,1.36,103.82,80,10
+img_003,Store_12,1.30,103.77,40,8
